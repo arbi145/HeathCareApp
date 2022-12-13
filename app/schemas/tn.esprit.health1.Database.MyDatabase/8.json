@@ -1,12 +1,12 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 5,
-    "identityHash": "29bffe4bda67250c46e45855822bdf80",
+    "version": 8,
+    "identityHash": "4d006dfdef0bf2127b5a158c3677d761",
     "entities": [
       {
         "tableName": "Docteur",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `price` REAL NOT NULL, `id_fkdocteur` TEXT, FOREIGN KEY(`id_fkdocteur`) REFERENCES `Specialite`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `price` REAL NOT NULL, `id_fkdocteur` INTEGER NOT NULL, FOREIGN KEY(`id_fkdocteur`) REFERENCES `Specialite`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -29,8 +29,8 @@
           {
             "fieldPath": "id_fkdocteur",
             "columnName": "id_fkdocteur",
-            "affinity": "TEXT",
-            "notNull": false
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -187,26 +187,7 @@
           ],
           "autoGenerate": true
         },
-        "indices": [
-          {
-            "name": "index_Rendezvous_id_fkrendezvous",
-            "unique": true,
-            "columnNames": [
-              "id_fkrendezvous"
-            ],
-            "orders": [],
-            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_Rendezvous_id_fkrendezvous` ON `${TABLE_NAME}` (`id_fkrendezvous`)"
-          },
-          {
-            "name": "index_Rendezvous_id_fkuser",
-            "unique": true,
-            "columnNames": [
-              "id_fkuser"
-            ],
-            "orders": [],
-            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_Rendezvous_id_fkuser` ON `${TABLE_NAME}` (`id_fkuser`)"
-          }
-        ],
+        "indices": [],
         "foreignKeys": [
           {
             "table": "Docteur",
@@ -236,7 +217,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '29bffe4bda67250c46e45855822bdf80')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '4d006dfdef0bf2127b5a158c3677d761')"
     ]
   }
 }

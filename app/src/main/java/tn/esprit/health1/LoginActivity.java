@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,14 +55,14 @@ public class LoginActivity extends AppCompatActivity {
 
                              //   startActivity(new Intent(LoginActivity.this,HomeActivity.class));
 
-                                if(user.getName().contains("Salem")){
-                                    Intent n =new Intent(LoginActivity.this,ChatActivity.class);
+                                if(user.getName().contains("arbi")){
+                                    Intent n =new Intent(LoginActivity.this, CardActivity.class);
                                     n.putExtra("username", user.getId().toString());
                                     startActivity(n);
 
                                 }
                                 else{
-                                    startActivity(new Intent(LoginActivity.this,ChatActivity.class));
+                                    startActivity(new Intent(LoginActivity.this, CalendarActivity.class));
 
                                 }
                             }

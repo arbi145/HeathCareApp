@@ -2,6 +2,7 @@ package tn.esprit.health1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
@@ -24,8 +25,8 @@ public class SpecialiteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specialite);
 
-        SharedPreferences sp = getSharedPreferences("sp", MODE_PRIVATE);
-        setTitle("Hello " + sp.getString("username", "Skander"));
+    //    SharedPreferences sp = getSharedPreferences("sp", MODE_PRIVATE);
+      //  setTitle("Hello " + sp.getString("username", "Skander"));
         name = findViewById(R.id.SpecialiteName);
         add = findViewById(R.id.add);
 
@@ -36,6 +37,9 @@ public class SpecialiteActivity extends AppCompatActivity {
             Specialite a = new Specialite(specialiteName);
 
             db.specialiteDAO().insertSpecialite(a);
+
+            Intent i = new Intent(SpecialiteActivity.this, CardActivity.class);
+            startActivity(i);
 
         });
     }

@@ -18,7 +18,7 @@ import tn.esprit.health1.entities.Rendezvous;
 import tn.esprit.health1.entities.Specialite;
 import tn.esprit.health1.entities.User;
 
-@Database(entities = {Docteur.class, Specialite.class, User.class, Rendezvous.class}, version = 5
+@Database(entities = {Docteur.class, Specialite.class, User.class, Rendezvous.class}, version = 11
         ,exportSchema = true)
 public abstract class MyDatabase extends RoomDatabase {
 

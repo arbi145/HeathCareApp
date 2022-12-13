@@ -80,7 +80,7 @@ public class Docteur {
 
     @Override
     public String toString() {
-        return "Article{" +
+        return "Docteur{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", prix=" + price +

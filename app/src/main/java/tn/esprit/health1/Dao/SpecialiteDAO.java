@@ -21,6 +21,6 @@ public interface SpecialiteDAO {
     @Delete
     public void deleteSpecialite(Specialite a);
 
-    @Query("SELECT * FROM Specialite")
+    @Query("SELECT id,name FROM Specialite")
     public List<Specialite> findSpecialites();
 }

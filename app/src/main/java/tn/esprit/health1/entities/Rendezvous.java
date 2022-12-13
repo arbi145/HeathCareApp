@@ -2,25 +2,32 @@ package tn.esprit.health1.entities;
 
 import static androidx.room.ForeignKey.CASCADE;
 
+import android.widget.DatePicker;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
-import java.sql.Date;
+import java.util.Date;
 
 
 @Entity(tableName = "Rendezvous" ,
         foreignKeys ={ @ForeignKey(entity = Docteur.class, parentColumns = "id",
                 childColumns = "id_fkrendezvous", onDelete = CASCADE),
                 @ForeignKey(entity = User.class, parentColumns = "id",
-                        childColumns = "id_fkuser", onDelete = CASCADE)},
+                        childColumns = "id_fkuser", onDelete = CASCADE)}
+        //,
              //   indices = @Index(value={"id_fkrendezvous,id_fkuser"}),
 
-                 indices = {
-                         @Index(value="id_fkrendezvous",unique = true),
-                         @Index(value="id_fkuser", unique = true)})
+                // indices = {
+                        // @Index(value="id_fkrendezvous",unique = true)
+                        // ,
+                        // @Index(value="id_fkuser", unique = true)
+         //}
+         )
 public class Rendezvous {
 
     @PrimaryKey(autoGenerate = true)
@@ -32,6 +39,7 @@ public class Rendezvous {
     @ColumnInfo
     private int id_fkuser;
     @ColumnInfo
+
     private String date;
     @ColumnInfo
     private int hours;
@@ -39,6 +47,15 @@ public class Rendezvous {
     private int minutes;
 
     public Rendezvous() {
+    }
+
+    public Rendezvous(String name, int id_fkrendezvous, int id_fkuser, String date, int hours, int minutes) {
+        this.name = name;
+        this.id_fkrendezvous = id_fkrendezvous;
+        this.id_fkuser = id_fkuser;
+        this.date = date;
+        this.hours = hours;
+        this.minutes = minutes;
     }
 
     public int getId() {

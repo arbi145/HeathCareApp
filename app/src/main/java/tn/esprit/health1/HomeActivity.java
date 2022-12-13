@@ -23,7 +23,7 @@ import tn.esprit.health1.Database.MyDatabase;
 import tn.esprit.health1.entities.Docteur;
 import tn.esprit.health1.entities.Specialite;
 
-public class HomeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener  {
+public class HomeActivity extends AppCompatActivity   {
 
     EditText name;
     EditText price;
@@ -41,8 +41,8 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        SharedPreferences sp = getSharedPreferences("sp", MODE_PRIVATE);
-        setTitle("Hello " + sp.getString("username", "Skander"));
+  //      SharedPreferences sp = getSharedPreferences("sp", MODE_PRIVATE);
+    //    setTitle("Hello " + sp.getString("username", "Skander"));
         name = findViewById(R.id.articleName);
         price = findViewById(R.id.articlePrice);
         foreigns = findViewById(R.id.foreign);
@@ -58,9 +58,11 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         add.setOnClickListener(v -> {
             String articleName = name.getText().toString();
             float articlePrice = Float.parseFloat(price.getText().toString());
-            int foreign = Integer.parseInt(foreigns.getText().toString());
-            Docteur a = new Docteur(articleName, articlePrice,foreign);
 
+            int foreign = Integer.parseInt(spinner.getSelectedItem().toString());
+
+         //   int foreign = Integer.parseInt(foreigns.getText().toString());
+            Docteur a = new Docteur(articleName, articlePrice,foreign);
 
             if (String.valueOf(name.getText()).equals("")) {
                 Toast.makeText(v.getContext(), "Please enter first name", Toast.LENGTH_SHORT).show();
@@ -82,36 +84,11 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         List<Specialite> specialiteLists = db.specialiteDAO().findSpecialites();
         spinner.setAdapter(
                 new ArrayAdapter(
-                        this, // Context, Activity etc.,
+                       this, // Context, Activity etc.,
                         android.R.layout.simple_list_item_1,specialiteLists
                 ));
 
 
-        
-
-
-
-
-
-
-
-        logout.setOnClickListener(v -> {
-            sp.edit().clear().apply();
-            finish();
-        });
-
-
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        String item = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
 }
